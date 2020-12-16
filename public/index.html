@@ -3,13 +3,28 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="styles.css" />
 		<title>Bender's Sockets</title>
 	</head>
 	<body>
 		<h1>Welcome to Bender's Family Fun Web Sockets!</h1>
-		<p>Click the button to check connect to the socket!</p>
-		<button>Check connection</button>
-		<p class="connection-status">Socket connection:</p>
+		<p>Fill out your name to establish connection to the socket!</p>
+		<form class="socket-connector" name="socket-connector">
+			<input type="text" name="name" required />
+			<button class="check-connection">Connect</button>
+		</form>
+		<p>
+			Connection status: <span class="connection-status">Not connected</span>
+		</p>
+		<div class="message-container">
+			<form class="messenger">
+				<label for="recipient">Recipient</label>
+				<select class="recipient" name="recipient" required></select>
+				<label for="message">Message</label>
+				<input type="text" name="message" id="message" class="message-text" />
+				<button class="send-message">Send</button>
+			</form>
+		</div>
 		<script src="script.js"></script>
 	</body>
 </html>
