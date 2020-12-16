@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
+const http = require('http');
 const app = express();
 const { nanoid } = require('nanoid');
 const WebSocket = require('ws');
 
 const PORT = process.env.PORT || 8080;
 
-const wss = new WebSocket.Server({ port: process.env.SOCKET_PORT || 8081 });
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({ server });
 
 wss.on('connection', async (connection) => {
 	try {
@@ -109,6 +112,6 @@ wss.on('connection', async (connection) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}...`);
 });
