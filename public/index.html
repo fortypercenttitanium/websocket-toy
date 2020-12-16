@@ -8,9 +8,11 @@
 	</head>
 	<body>
 		<h1>Welcome to Bender's Family Fun Web Sockets!</h1>
-		<p>Fill out your name to establish connection to the socket!</p>
+		<p class="welcome">
+			Fill out your name to establish connection to the socket!
+		</p>
 		<form class="socket-connector" name="socket-connector">
-			<input type="text" name="name" required />
+			<input class="name-input" type="text" name="name" required />
 			<button class="check-connection">Connect</button>
 		</form>
 		<p>
@@ -25,6 +27,7 @@
 				<button class="send-message">Send</button>
 			</form>
 		</div>
+		<div class="message-box"></div>
 		<script src="script.js"></script>
 	</body>
 </html>

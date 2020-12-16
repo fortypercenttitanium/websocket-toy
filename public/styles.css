@@ -94,3 +94,13 @@ button {
 	padding: 0 1rem;
 	margin: auto 0;
 }
+
+.message-box {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	margin: 1rem;
+	border: 1px solid black;
+	width: 50rem;
+	min-height: 20rem;
+}
