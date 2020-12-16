@@ -6,7 +6,7 @@ connect.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const socketURI = window.location.href.includes('localhost')
 		? 'ws://localhost:8081/'
-		: 'wss://https://benders-web-sockets.herokuapp.com:8081/';
+		: 'wss://https://benders-web-sockets.herokuapp.com/';
 	const socket = new WebSocket(socketURI);
 	socket.onopen = () => {
 		const name = e.target[0].value;
