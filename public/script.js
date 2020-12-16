@@ -5,8 +5,8 @@ const messenger = document.querySelector('.message-container');
 connect.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const socketURI = window.location.href.includes('localhost')
-		? 'wss://https://benders-web-sockets.herokuapp.com/'
-		: 'ws://localhost:8081/';
+		? 'ws://localhost:8081/'
+		: 'wss://https://benders-web-sockets.herokuapp.com:8081/';
 	const socket = new WebSocket(socketURI);
 	socket.onopen = () => {
 		const name = e.target[0].value;
