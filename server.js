@@ -8,19 +8,35 @@ const PORT = process.env.PORT || 8080;
 
 const wss = new WebSocket.Server({ port: 8081 });
 
-const clients = [];
-
 wss.on('connection', async (connection) => {
 	try {
 		connection.id = await nanoid(12);
-		clients.push(connection);
+		connection.isAlive = true;
+		connection.on('pong', heartbeat);
 		console.log(
 			'client list:',
-			clients.map((client) => client.id)
+			connection.clients.map((client) => client.id)
 		);
 	} catch (err) {
 		console.error(err);
 	}
+});
+
+const interval = setInterval(function ping() {
+	wss.clients.forEach((client) => {
+		if (client.isAlive) return client.terminate();
+		client.isAlive = false;
+		client.ping();
+	});
+}, 5000);
+
+function heartbeat() {
+	this.isAlive = true;
+}
+
+wss.on('close', (connection) => {
+	console.log('closing ID: ', connection.id);
+	clearInterval(interval);
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
