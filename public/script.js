@@ -86,6 +86,7 @@ connect.addEventListener('submit', (e) => {
 			}
 			case 'MESSAGE_TO_ALL': {
 				const newMessage = document.createElement('p');
+				const messageBox = document.querySelector('.message-box');
 				newMessage.textContent = `From ${payload.sender.userName} TO ALL: ${payload.message}`;
 				if (messageBox.childNodes.length) {
 					messageBox.insertBefore(newMessage, messageBox.firstChild);
