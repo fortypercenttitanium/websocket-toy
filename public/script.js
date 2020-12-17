@@ -4,7 +4,10 @@ const messenger = document.querySelector('.message-container');
 // wait till the form is submitted to connect so we can get a username immediately
 connect.addEventListener('submit', (e) => {
 	e.preventDefault();
-	const socket = new WebSocket('ws://localhost:8081');
+	const socketURI = window.location.href.includes('localhost')
+		? 'ws://localhost:8080/'
+		: 'wss://benders-web-sockets.herokuapp.com/';
+	const socket = new WebSocket(socketURI);
 	socket.onopen = () => {
 		const name = e.target[0].value;
 		socket.userName = name;
