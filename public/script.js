@@ -76,13 +76,22 @@ connect.addEventListener('submit', (e) => {
 					// if we are the sender, also show the message
 					newMessage.textContent = `TO ${payload.recipient.userName}: ${payload.message}`;
 				}
-				document.querySelector('.message-box').appendChild(newMessage);
+				const messageBox = document.querySelector('.message-box');
+				if (messageBox.childNodes.length) {
+					messageBox.insertBefore(newMessage, messageBox.firstChild);
+				} else {
+					messageBox.appendChild(newMessage);
+				}
 				break;
 			}
 			case 'MESSAGE_TO_ALL': {
 				const newMessage = document.createElement('p');
 				newMessage.textContent = `From ${payload.sender.userName} TO ALL: ${payload.message}`;
-				document.querySelector('.message-box').appendChild(newMessage);
+				if (messageBox.childNodes.length) {
+					messageBox.insertBefore(newMessage, messageBox.firstChild);
+				} else {
+					messageBox.appendChild(newMessage);
+				}
 				break;
 			}
 			default:
